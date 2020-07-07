@@ -44,6 +44,7 @@ export class LinkComponent implements OnInit {
   }
 
   detalhaLinks(id: number) {
+    this.edicaoLink = false;
     this.linkService.getLink(id).subscribe(link => {
       this.formAlterandoLink = link;
       this.openModalDialog();
@@ -59,7 +60,7 @@ export class LinkComponent implements OnInit {
   }
 
   inserirLink() {
-    this.edicaoLink = false;
+    this.edicaoLink = true;
     this.formAlterandoLink = new Link();
     this.openModalDialog();
   }
