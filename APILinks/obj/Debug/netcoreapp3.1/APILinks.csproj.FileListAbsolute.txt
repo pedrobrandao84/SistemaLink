@@ -143,6 +143,9 @@ C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAn
 C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.csprojAssemblyReference.cache
+C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.csproj.CoreCompileInputs.cache
 C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.MvcApplicationPartsAssemblyInfo.cache
-C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.csprojAssemblyReference.cache

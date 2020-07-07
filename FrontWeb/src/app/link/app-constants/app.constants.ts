@@ -1,0 +1,9 @@
+import { environment } from 'src/environments/environment';
+
+export class AppConstants {
+    //URL BASE
+    public static get BASE_URL_REST(): string { return environment.BaseUrl};
+
+    //LINK
+    public static get LINK(): string {return 'EnderecosLinks'};
+}

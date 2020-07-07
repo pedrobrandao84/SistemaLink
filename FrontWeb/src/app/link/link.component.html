@@ -1,0 +1,81 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Links</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-lg-12 ">
+          <a id="btnInserir" name="btnInserir" class="btn btn-primary btn_inserir" type="button" (click)="inserirLink()">Novo Link</a>
+        </div>
+      </div>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>URL</th>
+            <th>Qtd. Cliques</th>
+            <th>Data Criação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let link of links">
+            <td>{{link.idEnderecoLink}}</td>
+            <td>{{link.nome}}</td>
+            <td>{{link.url}}</td>
+            <td>{{link.qtdClicks}}</td>
+            <td>{{link.dtCriacao | date: 'dd/MM/yyyy' }}</td>
+            <td>
+                <button (click)="detalhaLinks(link.idEnderecoLink)" class="btn btn-info" style="margin-left: 10px"><i class="pi pi-search"></i></button>
+                <button (click)="editaLinks(link.idEnderecoLink)" class="btn btn-default" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
+                <button (click)="deleteLinks(link.idEnderecoLink)" class="btn btn-danger" style="margin-left: 10px"><i class="pi pi-times"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p-dialog header="Link" [(visible)]="mostrarModal" [modal]="true" [contentStyle]="{width: '500px'}">
+      <div class="ui-g">
+        <div class="ui-g-2">
+          <p class="tituloPopup">Código: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputCodigoLink" pattern="\d*" numerico maxlength="2" [disabled]="true" type="text" [(ngModel)]="formAlterandoLink.idEnderecoLink"
+            class="form-control" name="codigoLink" >
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Nome: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputNomeLink" maxlength="50" [disabled]="!edicaoLink" type="text" [(ngModel)]="formAlterandoLink.nome"
+            class="form-control" name="nomeLink" placeholder="Descrição da Situação Extração">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*URL: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputUrlLink" maxlength="200" [disabled]="!edicaoLink" type="url" [(ngModel)]="formAlterandoLink.url"
+            class="form-control" name="urlLink" placeholder="URL do Link">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Qtd. Cliques: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputQtdClickLink" numerico maxlength="10" [disabled]="!edicaoLink" type="number" [(ngModel)]="formAlterandoLink.qtdClicks"
+            class="form-control" name="qtdClickLink" placeholder="Quantidade de Cliques">
+        </div>
+      </div>
+      <p-footer>
+        <button type="submit" id="idButtonSalvarLink" name="idButtonSalvarLink" class="btn btn-danger" (click)="gravarLink()">Salvar</button>
+        <a class="btn btn-info" type="button" (click)="closeModalDialog()">Voltar</a>
+      </p-footer>
+    </p-dialog>
+    <p-overlayPanel #op [dismissable]="true">
+      <ng-template pTemplate>
+        Content
+      </ng-template>  
+    </p-overlayPanel>
+  </div>

@@ -22,9 +22,9 @@ namespace APILinks.Controllers
 
         // GET: api/EnderecosLinks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EnderecoLink>>> GetEnderecosLinks()
+        public IEnumerable<EnderecoLink> GetEnderecosLinks()
         {
-            return await _context.EnderecosLinks.ToListAsync();
+            return _context.EnderecosLinks;
         }
 
         // GET: api/EnderecosLinks/5
@@ -77,8 +77,9 @@ namespace APILinks.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<EnderecoLink>> PostEnderecoLink(EnderecoLink enderecoLink)
+        public async Task<ActionResult<EnderecoLink>> PostEnderecoLink([FromBody] EnderecoLink enderecoLink)
         {
+            enderecoLink.DTCriacao = DateTime.Now;
             _context.EnderecosLinks.Add(enderecoLink);
             await _context.SaveChangesAsync();
 

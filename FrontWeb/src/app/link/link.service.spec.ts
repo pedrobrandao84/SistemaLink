@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EnderecolinkService } from './enderecolink.service';
+import { LinkService } from './link.service';
 
-describe('EnderecolinkService', () => {
-  let service: EnderecolinkService;
+describe('LinkService', () => {
+  let service: LinkService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EnderecolinkService);
+    service = TestBed.inject(LinkService);
   });
 
   it('should be created', () => {

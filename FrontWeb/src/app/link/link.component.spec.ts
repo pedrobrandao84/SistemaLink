@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnderecolinkComponent } from './enderecolink.component';
+import { LinkComponent } from './link.component';
 
-describe('EnderecolinkComponent', () => {
-  let component: EnderecolinkComponent;
-  let fixture: ComponentFixture<EnderecolinkComponent>;
+describe('LinkComponent', () => {
+  let component: LinkComponent;
+  let fixture: ComponentFixture<LinkComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EnderecolinkComponent ]
+      declarations: [ LinkComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EnderecolinkComponent);
+    fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
