@@ -4,6 +4,7 @@ import { Link } from "./Model/link";
 import { LinkService } from './link.service';
 import { Router } from '@angular/router';
 import { MensagemService } from '../app-util/mensagem-service';
+import { Grupo } from './Model/grupo';
 
 @Component({
   selector: 'app-link',
@@ -14,9 +15,12 @@ import { MensagemService } from '../app-util/mensagem-service';
 export class LinkComponent implements OnInit {
 
   links: Link[];
+  grupos: Grupo[];
   edicaoLink: boolean = false;
   formAlterandoLink: Link = new Link();
+  formAlterandoGrupo: Grupo = new Grupo();
   mostrarModal: boolean = false;
+  mostrarModalGrupo: boolean = false;
 
   constructor(
     private linkService: LinkService, 
@@ -47,7 +51,7 @@ export class LinkComponent implements OnInit {
     this.edicaoLink = false;
     this.linkService.getLink(id).subscribe(link => {
       this.formAlterandoLink = link;
-      this.openModalDialog();
+      this.openModalDialogGrupo();
     });
   }
 
@@ -91,6 +95,14 @@ export class LinkComponent implements OnInit {
     this.mostrarModal = false;
   }
 
+  openModalDialogGrupo() {
+    this.mostrarModalGrupo = true;
+  }
+
+  closeModalDialogGrupo() {
+    this.mostrarModalGrupo = false;
+  }
+
   verificarFormularioLink() {
     let msg = "";
 
@@ -112,5 +124,23 @@ export class LinkComponent implements OnInit {
     }
 
     return true;
+  }
+
+  deleteGrupo(id: number){
+    this.linkService.deleteLink(id).subscribe(
+      data => {
+        console.log(data);
+        this.reloadLinks();
+      },
+      error => console.log(error)
+    );
+  }
+
+  editaGrupo(id: number) {
+    this.edicaoLink = true;
+    this.linkService.getLink(id).subscribe(link => {
+      this.formAlterandoLink = link;
+      this.openModalDialog();
+    });
   }
 }
