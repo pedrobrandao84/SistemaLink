@@ -11,5 +11,6 @@ namespace APILinks.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         { }
         public DbSet<EnderecoLink> EnderecosLinks { get; set; }
+        public DbSet<Grupo> Grupos { get; set; }
     }
 }

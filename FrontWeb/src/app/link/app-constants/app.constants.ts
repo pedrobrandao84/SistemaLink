@@ -6,4 +6,7 @@ export class AppConstants {
 
     //LINK
     public static get LINK(): string {return 'EnderecosLinks'};
+
+    //GRUPO
+    public static get GRUPO(): string {return 'Grupos'};
 }

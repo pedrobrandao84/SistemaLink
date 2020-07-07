@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Link } from "./Model/link";
-import { LinkService } from './link.service';
+import { LinkService } from './services/link.service';
 import { Router } from '@angular/router';
 import { MensagemService } from '../app-util/mensagem-service';
 import { Grupo } from './Model/grupo';
+import { GrupoService } from './services/grupo.service';
 
 @Component({
   selector: 'app-link',
@@ -17,6 +18,7 @@ export class LinkComponent implements OnInit {
   links: Link[];
   grupos: Grupo[];
   edicaoLink: boolean = false;
+  edicaoGrupo: boolean = false;
   formAlterandoLink: Link = new Link();
   formAlterandoGrupo: Grupo = new Grupo();
   mostrarModal: boolean = false;
@@ -24,6 +26,7 @@ export class LinkComponent implements OnInit {
 
   constructor(
     private linkService: LinkService, 
+    private grupoService: GrupoService,
     private router: Router,
     private mensagem: MensagemService) { }
 
@@ -96,11 +99,19 @@ export class LinkComponent implements OnInit {
   }
 
   openModalDialogGrupo() {
+    this.edicaoGrupo = false;
+    this.reloadGrupos();
     this.mostrarModalGrupo = true;
   }
 
   closeModalDialogGrupo() {
     this.mostrarModalGrupo = false;
+  }
+
+  cancelarGrupo() {
+    this.edicaoGrupo = false;
+    this.formAlterandoGrupo = new Grupo();
+    this.reloadGrupos();
   }
 
   verificarFormularioLink() {
@@ -127,20 +138,68 @@ export class LinkComponent implements OnInit {
   }
 
   deleteGrupo(id: number){
-    this.linkService.deleteLink(id).subscribe(
+    this.grupoService.deleteGrupo(id).subscribe(
       data => {
         console.log(data);
-        this.reloadLinks();
+        this.reloadGrupos();
       },
       error => console.log(error)
     );
   }
 
   editaGrupo(id: number) {
-    this.edicaoLink = true;
-    this.linkService.getLink(id).subscribe(link => {
-      this.formAlterandoLink = link;
-      this.openModalDialog();
+    this.grupoService.getGrupo(id).subscribe(grupo => {
+      this.formAlterandoGrupo = grupo;
+      this.edicaoGrupo = true;
     });
+  }
+
+  reloadGrupos(){
+    this.grupoService.getGruposList(this.formAlterandoLink.idEnderecoLink).subscribe((grupos: Grupo[]) => {
+      this.grupos = grupos;
+    });
+  }
+
+  gravarGrupo() {
+    if(this.verificarFormularioGrupo()) {
+      if (!this.edicaoGrupo) {
+        this.formAlterandoGrupo.enderecoLink = this.formAlterandoLink;
+        this.grupoService.createGrupo(this.formAlterandoGrupo).subscribe(() => {
+          this.mensagem.sucesso("Grupo", "Grupo Inserido com sucesso.");
+          this.cancelarGrupo();
+        });
+      } else {
+        this.grupoService.updateGrupo(this.formAlterandoGrupo.idGrupo, this.formAlterandoGrupo).subscribe(() => {
+          this.mensagem.sucesso("Grupo", "Grupo Alterado com sucesso.");
+          this.edicaoGrupo = false;
+          this.cancelarGrupo();
+        });
+      }
+    }
+  }
+
+  verificarFormularioGrupo() {
+    let msg = "";
+
+    this.grupos.forEach(grupo => {
+      if(this.formAlterandoGrupo.ordem == grupo.ordem) {
+        msg += " Esta Ordem já existe. Deve ser informado uma ordem diferente da atual. ";
+      }
+    });
+
+    if (this.formAlterandoGrupo.nome == null || this.formAlterandoGrupo.nome == "") {
+      msg += " Digite o nome do Grupo. ";
+    }
+
+    if (this.formAlterandoGrupo.url == null || this.formAlterandoGrupo.url == "") {
+      msg += " Digite a URL do Grupo. ";
+    }
+
+    if (msg) {
+      this.mensagem.alerta('Grupo', msg);
+      return false;
+    }
+
+    return true;
   }
 }

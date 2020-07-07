@@ -28,9 +28,9 @@
             <td>{{link.qtdClicks}}</td>
             <td>{{link.dtCriacao | date: 'dd/MM/yyyy' }}</td>
             <td>
-                <button (click)="detalhaLinks(link.idEnderecoLink)" class="btn btn-info" style="margin-left: 10px"><i class="pi pi-search"></i></button>
-                <button (click)="editaLinks(link.idEnderecoLink)" class="btn btn-default" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
-                <button (click)="deleteLinks(link.idEnderecoLink)" class="btn btn-danger" style="margin-left: 10px"><i class="pi pi-times"></i></button>
+                <button (click)="detalhaLinks(link.idEnderecoLink)" class="btn btn-info" title="Consulta Grupos" style="margin-left: 10px"><i class="pi pi-search"></i></button>
+                <button (click)="editaLinks(link.idEnderecoLink)" class="btn btn-default" title="Edita Link" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
+                <button (click)="deleteLinks(link.idEnderecoLink)" class="btn btn-danger" title="Deleta Link" style="margin-left: 10px"><i class="pi pi-times"></i></button>
             </td>
           </tr>
         </tbody>
@@ -79,7 +79,7 @@
       </ng-template>  
     </p-overlayPanel>
 
-    <p-dialog header="Grupo" [(visible)]="mostrarModalGrupo" [modal]="true" [contentStyle]="{width: '800px'}">
+    <p-dialog header="Grupo" [(visible)]="mostrarModalGrupo" [modal]="true" >
       <div class="ui-g">
         <div class="ui-g-4">
           <p class="tituloPopup">Código: {{ formAlterandoLink.idEnderecoLink }}</p>
@@ -101,22 +101,25 @@
           <input id="idInputOrdemGrupo" numerico maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.ordem"
           class="form-control" name="ordemGrupo" placeholder="Ordem do Grupo">
         </div>
-        <div class="ui-g-6">
-          <input id="idInputNomeGrupo" numerico maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.nome"
+        <div class="ui-g-5">
+          <input id="idInputNomeGrupo" maxlength="50" type="text" [(ngModel)]="formAlterandoGrupo.nome"
           class="form-control" name="nomeGrupo" placeholder="Nome do Grupo">
         </div>
-        <div class="ui-g-3">
+        <div class="ui-g-4">
           <input id="idInputQtdClickGrupo" [disabled]="true" numerico maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.qtdClicks"
           class="form-control" name="qtdClickGrupo" placeholder="Qtd. de Cliques do Grupo">
         </div>
       </div>
       <div class="ui-g">
-        <div class="ui-g-10">
-          <input id="idInputUrlGrupo" numerico maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.url"
+        <div class="ui-g-8">
+          <input id="idInputUrlGrupo" maxlength="200" type="text" [(ngModel)]="formAlterandoGrupo.url"
           class="form-control" name="UrlGrupo" placeholder="URL do Grupo">
         </div>
         <div class="ui-g-2">
-          <button type="submit" id="idButtonAdicionarGrupo" name="idButtonAdicionarGrupo" class="btn btn-danger" (click)="gravarLink()">Adicionar</button>
+          <button type="submit" id="idButtonAdicionarGrupo" name="idButtonAdicionarGrupo" class="btn btn-danger" style="float: right;" (click)="gravarGrupo()">Adicionar</button>
+        </div>
+        <div class="ui-g-2">
+          <button type="submit" id="idButtonCancelarGrupo" name="idButtonCancelarGrupo" class="btn btn-info" style="float: right;" (click)="cancelarGrupo()">Cancelar</button>
         </div>
       </div>
       <table class="table table-striped">
@@ -134,7 +137,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let grupo of grupos">
-            <td>{{grupo.idEnderecoLink}}</td>
+            <td>{{grupo.enderecoLink.idEnderecoLink}}</td>
             <td>{{grupo.ordem}}</td>
             <td>{{grupo.idGrupo}}</td>
             <td>{{grupo.nome}}</td>
@@ -142,8 +145,8 @@
             <td>{{grupo.qtdClicks}}</td>
             <td>{{grupo.dtCriacao | date: 'dd/MM/yyyy' }}</td>
             <td>
-                <button (click)="editaGrupo(grupo.idGrupo)" class="btn btn-default" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
-                <button (click)="deleteGrupo(grupo.idGrupo)" class="btn btn-danger" style="margin-left: 10px"><i class="pi pi-times"></i></button>
+                <button (click)="editaGrupo(grupo.idGrupo)" class="btn btn-default" title="Edita Grupo" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
+                <button (click)="deleteGrupo(grupo.idGrupo)" class="btn btn-danger" title="Deleta Grupo" style="margin-left: 10px"><i class="pi pi-times"></i></button>
             </td>
           </tr>
         </tbody>

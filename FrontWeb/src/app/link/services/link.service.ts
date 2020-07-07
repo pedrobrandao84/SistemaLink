@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AppConstants } from './app-constants/app.constants';
-import { Link } from './Model/link';
+import { AppConstants } from '../app-constants/app.constants';
+import { Link } from '../Model/link';
 
 var httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'})};
 
@@ -16,8 +16,7 @@ export class LinkService {
   private urlLink = AppConstants.BASE_URL_REST + AppConstants.LINK;
 
   getLinksList() {
-    let urlList = AppConstants.BASE_URL_REST + AppConstants.LINK;
-    return this.http.get(`${urlList}`);
+    return this.http.get(`${this.urlLink}`);
   }
 
   getLink(id: number): Observable<Link> {
