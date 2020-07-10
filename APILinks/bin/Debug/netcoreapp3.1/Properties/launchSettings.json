@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "EnderecosLinks",
+      "launchUrl": "api/EnderecosLinks",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

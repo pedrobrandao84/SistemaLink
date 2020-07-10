@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="!isUrlLink()">
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
@@ -24,7 +24,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div style="height: 88vh; padding: 16px;">
-
+      <p-toast [style]="{marginTop: '80px'}"></p-toast>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

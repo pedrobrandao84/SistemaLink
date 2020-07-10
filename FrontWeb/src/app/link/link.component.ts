@@ -137,21 +137,27 @@ export class LinkComponent implements OnInit {
     return true;
   }
 
-  deleteGrupo(id: number){
-    this.grupoService.deleteGrupo(id).subscribe(
+  deleteGrupo(id: number, ordem: number){
+    if (Math.max.apply(Math, this.grupos.map(function(o) {return o.ordem})) != ordem) {
+      this.mensagem.erro("Grupo", "Somente permitido exclusão de útimo grupo.");
+      return;
+    } else {
+      this.grupoService.deleteGrupo(id).subscribe(
       data => {
         console.log(data);
         this.reloadGrupos();
+        this.mensagem.sucesso("Grupo", "Grupo excluído com sucesso.");
       },
       error => console.log(error)
     );
+    }
   }
 
   editaGrupo(id: number) {
-    this.grupoService.getGrupo(id).subscribe(grupo => {
-      this.formAlterandoGrupo = grupo;
-      this.edicaoGrupo = true;
-    });
+      this.grupoService.getGrupo(id).subscribe(grupo => {
+        this.formAlterandoGrupo = grupo;
+        this.edicaoGrupo = true;
+      });
   }
 
   reloadGrupos(){
@@ -163,7 +169,9 @@ export class LinkComponent implements OnInit {
   gravarGrupo() {
     if(this.verificarFormularioGrupo()) {
       if (!this.edicaoGrupo) {
+        let ultimaOrdem = this.grupos.length == 0 ? 1 : Math.max.apply(Math, this.grupos.map(function(o) {return o.ordem}));
         this.formAlterandoGrupo.enderecoLink = this.formAlterandoLink;
+        this.formAlterandoGrupo.ordem = ultimaOrdem + 1;
         this.grupoService.createGrupo(this.formAlterandoGrupo).subscribe(() => {
           this.mensagem.sucesso("Grupo", "Grupo Inserido com sucesso.");
           this.cancelarGrupo();
@@ -182,7 +190,7 @@ export class LinkComponent implements OnInit {
     let msg = "";
 
     this.grupos.forEach(grupo => {
-      if(this.formAlterandoGrupo.ordem == grupo.ordem) {
+      if(!this.edicaoLink && this.formAlterandoGrupo.ordem == grupo.ordem) {
         msg += " Esta Ordem já existe. Deve ser informado uma ordem diferente da atual. ";
       }
     });
@@ -201,5 +209,10 @@ export class LinkComponent implements OnInit {
     }
 
     return true;
+  }
+
+  onChangeLink(nomeLink: string) {
+    let nome = nomeLink.toLowerCase().trim().replace(/\s{2,}/g, ' ').replace(" ", "-");
+    this.formAlterandoLink.url = window.location.href.replace("link","url-link") + "?url=" + nome;
   }
 }

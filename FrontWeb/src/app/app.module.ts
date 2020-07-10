@@ -18,11 +18,14 @@ import { DialogModule } from 'primeng/dialog';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MessageService } from 'primeng/api';
 import { MensagemService } from './app-util/mensagem-service';
+import { UrlLinkComponent } from './url-link/url-link.component';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LinkComponent
+    LinkComponent,
+    UrlLinkComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { MensagemService } from './app-util/mensagem-service';
     MatGridListModule,
     MatTableModule,
     DialogModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ToastModule
   ],
   exports: [
     MatToolbarModule,

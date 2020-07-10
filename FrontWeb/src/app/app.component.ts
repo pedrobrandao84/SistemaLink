@@ -42,4 +42,11 @@ export class AppComponent {
     }
   }
 
+  isUrlLink() {
+    if (window.location.href.includes('url-link')){
+      return true;
+    }
+    return false;
+  }
+
 }

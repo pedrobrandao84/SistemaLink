@@ -51,7 +51,7 @@
         </div>
         <div class="ui-g-10">
           <input id="idInputNomeLink" maxlength="50" [disabled]="!edicaoLink" type="text" [(ngModel)]="formAlterandoLink.nome"
-            class="form-control" name="nomeLink" placeholder="Descrição da Situação Extração">
+            class="form-control" name="nomeLink" (change)="onChangeLink($event.target.value)" placeholder="Descrição da Situação Extração">
         </div>
         <div class="ui-g-2">
           <p class="tituloPopup">*URL: </p>
@@ -98,7 +98,7 @@
       </div>
       <div class="ui-g">
         <div class="ui-g-3">
-          <input id="idInputOrdemGrupo" numerico maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.ordem"
+          <input id="idInputOrdemGrupo" numerico [disabled]="true" maxlength="10" type="number" [(ngModel)]="formAlterandoGrupo.ordem"
           class="form-control" name="ordemGrupo" placeholder="Ordem do Grupo">
         </div>
         <div class="ui-g-5">
@@ -127,7 +127,6 @@
           <tr>
             <th>Cód. Link</th>
             <th>Ordem</th>
-            <th>Cód. Grupo</th>
             <th>Nome</th>
             <th>URL</th>
             <th>Qtd. Cliques</th>
@@ -139,14 +138,13 @@
           <tr *ngFor="let grupo of grupos">
             <td>{{grupo.enderecoLink.idEnderecoLink}}</td>
             <td>{{grupo.ordem}}</td>
-            <td>{{grupo.idGrupo}}</td>
             <td>{{grupo.nome}}</td>
             <td>{{grupo.url}}</td>
             <td>{{grupo.qtdClicks}}</td>
             <td>{{grupo.dtCriacao | date: 'dd/MM/yyyy' }}</td>
             <td>
                 <button (click)="editaGrupo(grupo.idGrupo)" class="btn btn-default" title="Edita Grupo" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
-                <button (click)="deleteGrupo(grupo.idGrupo)" class="btn btn-danger" title="Deleta Grupo" style="margin-left: 10px"><i class="pi pi-times"></i></button>
+                <button (click)="deleteGrupo(grupo.idGrupo, grupo.ordem)" class="btn btn-danger" title="Deleta Grupo" style="margin-left: 10px"><i class="pi pi-times"></i></button>
             </td>
           </tr>
         </tbody>
