@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/092b9b8f-194e-4aa1-9b82-11a4e9fd88af/resourceGroups/APILinks20200724111807ResourceGroup/providers/Microsoft.Web/sites/WebLinkGrupos",
+    "appService.deploySubpath": "dist\\controlematriculaweb-front"
+}

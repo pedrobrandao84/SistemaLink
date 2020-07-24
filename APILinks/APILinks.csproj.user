@@ -10,6 +10,6 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>APILinks.Models.AppDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>APILinks20200724111807 - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

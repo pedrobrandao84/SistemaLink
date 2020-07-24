@@ -74,7 +74,7 @@ export class LinkComponent implements OnInit {
 
   gravarLink() {
     if(this.verificarFormularioLink()) {
-      if (!this.edicaoLink) {
+      if (this.formAlterandoLink.idEnderecoLink == undefined) {
         this.linkService.createLink(this.formAlterandoLink).subscribe(() => {
           this.mensagem.sucesso("Link", "Link Inserido com sucesso.");
           this.reloadLinks();

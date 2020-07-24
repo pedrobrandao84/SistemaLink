@@ -149,3 +149,5 @@ C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Microsoft.AspNetCor
 C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.csproj.CoreCompileInputs.cache
 C:\Projetos\Git\SistemaLink\APILinks\obj\Debug\netcoreapp3.1\APILinks.MvcApplicationPartsAssemblyInfo.cache
+C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.APILinks20200724111807 - Web Deploy.json
+C:\Projetos\Git\SistemaLink\APILinks\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
