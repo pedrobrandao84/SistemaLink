@@ -212,7 +212,7 @@ export class LinkComponent implements OnInit {
   }
 
   onChangeLink(nomeLink: string) {
-    let nome = nomeLink.toLowerCase().trim().replace(/\s{2,}/g, ' ').replace(" ", "-");
-    this.formAlterandoLink.url = window.location.href.replace("link","url-link") + "?url=" + nome;
+    let nome = nomeLink.toLowerCase().trim().replace(/\s{2,}/g, " ").replace(/ /g,"-");
+    this.formAlterandoLink.url = window.location.href.replace("/link","/url-link") + "?url=" + nome;
   }
 }
