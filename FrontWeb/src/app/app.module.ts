@@ -20,12 +20,15 @@ import { MessageService } from 'primeng/api';
 import { MensagemService } from './app-util/mensagem-service';
 import { UrlLinkComponent } from './url-link/url-link.component';
 import { ToastModule } from 'primeng/toast';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 @NgModule({
   declarations: [
     AppComponent,
     LinkComponent,
-    UrlLinkComponent
+    UrlLinkComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { ToastModule } from 'primeng/toast';
     MatTableModule,
     DialogModule,
     OverlayPanelModule,
-    ToastModule
+    ToastModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [
     MatToolbarModule,
@@ -51,11 +55,11 @@ import { ToastModule } from 'primeng/toast';
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [
     MessageService,
-    MensagemService
+    MensagemService,
   ],
   bootstrap: [AppComponent]
 })

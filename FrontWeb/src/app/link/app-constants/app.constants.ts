@@ -9,4 +9,7 @@ export class AppConstants {
 
     //GRUPO
     public static get GRUPO(): string {return 'Grupos'};
+
+    //USUARIO
+    public static get USUARIO(): string {return 'Usuarios'};
 }

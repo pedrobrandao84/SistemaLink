@@ -1,0 +1,22 @@
+.btn_inserir {
+    float: right;  
+}
+
+.btn_buscar {
+    float: right;  
+    margin: 0px 5px 5px 0px;
+    color: #fff;
+    background-color: darkorange;
+    border-color: darkorange;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: darkolivegreen;
+    border-color: darkolivegreen;
+}
+
+.filtro {
+    font-weight: bolder;
+    font-size: medium;
+}

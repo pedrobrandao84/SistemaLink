@@ -12,5 +12,6 @@ namespace APILinks.Models
         { }
         public DbSet<EnderecoLink> EnderecosLinks { get; set; }
         public DbSet<Grupo> Grupos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

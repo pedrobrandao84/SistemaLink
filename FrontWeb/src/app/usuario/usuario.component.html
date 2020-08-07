@@ -1,0 +1,118 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Usuarios</h2>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+          <div class="col-lg-8">
+              <div class="col-lg-4 filtro">
+                  Nome:
+              </div>
+              <div class="col-lg-8">
+                <input id="idInputFiltroNome" maxlength="200" type="text" [(ngModel)]="formFiltroUsuario.nome"
+                class="form-control" name="filtroNomeUsuario" placeholder="Nome do Usuário">
+              </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="col-lg-4 filtro">
+                Ativo:
+            </div>
+            <div class="col-lg-4">
+                <select name="idFiltroAtivo" class="form-control" [(ngModel)]="formFiltroUsuario.filtroAtivo">
+                    <option [ngValue]="undefined" selected>Todos</option>
+                    <option value="True">Ativo</option>
+                    <option value="False">Inativo</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12 ">
+          <a id="btnInserir" name="btnInserir" class="btn btn-primary btn_inserir" type="button" (click)="inserirUsuario()">Novo Usuario</a>
+          <a id="btnBuscar" name="btnBuscar" class="btn btn-primary btn_buscar" type="button" (click)="buscarUsuario()">Buscar</a>
+        </div>
+      </div>
+      <br>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Data Ultimo Acesso</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuarios">
+            <td>{{usuario.idUsuario}}</td>
+            <td>{{usuario.nome}}</td>
+            <td>{{usuario.cpf}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.dataUltimoAcesso | date: 'dd/MM/yyyy hh:mm:ss' }}</td>
+            <td>{{usuario.stAtivo ? "Ativo" : "Inativo"}}</td>
+            <td>
+                <button (click)="editaUsuario(usuario.idUsuario)" class="btn btn-default" title="Edita Usuário" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p-dialog header="Usuário" [(visible)]="mostrarModal" [modal]="true" [contentStyle]="{width: '500px'}">
+      <div class="ui-g">
+        <div class="ui-g-2">
+          <p class="tituloPopup">Código: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputCodigoUsuario" pattern="\d*" numerico [disabled]="true" type="number" [(ngModel)]="formAlterandoUsuario.idUsuario"
+            class="form-control" name="codigoUsuario" >
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Nome: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputNomeUsuario" maxlength="200" [disabled]="!edicaoUsuario" type="text" [(ngModel)]="formAlterandoUsuario.nome"
+            class="form-control" name="nomeUsuario" placeholder="Nome do Usuário">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*CPF: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputCPFUsuario" maxlength="14" [disabled]="!edicaoUsuario" [mask]="cpfcnpjmask()" type="text" [(ngModel)]="formAlterandoUsuario.cpf"
+            class="form-control" name="cpfUsuario" placeholder="CPF do Usuário">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Email: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputEmailUsuario" maxlength="100" [disabled]="!edicaoUsuario" type="email" [(ngModel)]="formAlterandoUsuario.email"
+            class="form-control" name="emailUsuario" placeholder="Email do Usuário">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Senha: </p>
+        </div>
+        <div class="ui-g-10">
+          <input id="idInputSenhaUsuario" maxlength="15" [disabled]="!edicaoUsuario" type="password" [(ngModel)]="formAlterandoUsuario.senha"
+            class="form-control" name="senhaUsuario" placeholder="Senha do Usuário">
+        </div>
+        <div class="ui-g-2">
+          <p class="tituloPopup">*Ativo: </p>
+        </div>
+        <div class="ui-g-1">
+          <input id="idInputAtivoUsuario" [disabled]="!edicaoUsuario" type="checkbox" [(ngModel)]="formAlterandoUsuario.stAtivo"
+            class="form-control" name="ativoUsuario" [checked]="formAlterandoUsuario.stAtivo">
+        </div>
+      </div>
+      <p-footer>
+        <button type="submit" id="idButtonSalvarUsuario" name="idButtonSalvarUsuario" class="btn btn-danger" (click)="gravarUsuario()">Salvar</button>
+        <a class="btn btn-info" type="button" (click)="closeModalDialog()">Voltar</a>
+      </p-footer>
+    </p-dialog>
+    <p-overlayPanel #op [dismissable]="true">
+      <ng-template pTemplate>
+        Content
+      </ng-template>  
+    </p-overlayPanel>
+
+  </div>
