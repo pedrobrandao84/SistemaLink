@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters>
-  <parameter name="IIS Web Application Name" description="" value="APILinks20200724111807" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Projetos\\Git\\SistemaLink\\APILinks\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
-  </parameter>
-  <parameter name="APILinks.Models.AppDbContext" description="" value="Data Source=tcp:pedrobrandao.database.windows.net,1433;Initial Catalog=APILinks_db;User Id=pedrobrandao@pedrobrandao;Password=@na2102!" tags="dbfullsql">
-    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Projetos\\Git\\SistemaLink\\APILinks\\obj\\Release\\netcoreapp3\.1\\PubTmp\\EFSQLScripts\\APILinks\.Models\.AppDbContext\.sql$" />
-  </parameter>
-</parameters>
