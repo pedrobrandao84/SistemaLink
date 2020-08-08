@@ -41,4 +41,9 @@ export class UsuarioService {
     this.urlUsuario = AppConstants.BASE_URL_REST + AppConstants.USUARIO;
     return this.http.put<Usuario>(this.urlUsuario + '/' + id, usuario, httpOptions);
   }
+
+  loginUsuario(usuario: Usuario): Observable<Usuario> {
+    this.urlUsuario = AppConstants.BASE_URL_REST + AppConstants.USUARIO;
+    return this.http.put<Usuario>(this.urlUsuario + '/login', usuario, httpOptions);
+  }
 }

@@ -1,0 +1,33 @@
+
+<div class="container">
+    <div class="box">
+        <h2>Login</h2>
+
+        <div class="col-lg-12">
+            <div class="col-lg-4 filtro">
+                Email:
+            </div>
+            <div class="col-lg-8">
+              <input id="idInputEmail" maxlength="200" type="text" [(ngModel)]="usuario.email"
+              class="form-control" name="EmailUsuario" placeholder="Email do Usuário">
+            </div>
+        </div>
+        
+        <div class="col-lg-12">
+            <div class="col-lg-4 filtro">
+                Senha:
+            </div>
+            <div class="col-lg-8">
+              <input id="idInputSenha" maxlength="15" type="password" [(ngModel)]="usuario.senha"
+              class="form-control" name="SenhaUsuario" placeholder="Senha do Usuário">
+            </div>
+        </div>
+        <br>
+        <div class="col-lg-12">
+            <div class="col-lg-12">
+                <a id="btnLogar" name="btnLogar" class="btn btn-primary" type="button" (click)="fazerLogin()">Login</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
