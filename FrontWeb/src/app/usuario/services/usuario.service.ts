@@ -24,6 +24,9 @@ export class UsuarioService {
     if(usuario.filtroAtivo != undefined && usuario.filtroAtivo != "Todos"){
       this.urlUsuario = this.urlUsuario + "&ativo=" + usuario.filtroAtivo;
     }
+    if(usuario.cpf != undefined){
+      this.urlUsuario = this.urlUsuario + "&cpf=" + usuario.cpf;
+    }
     return this.http.get(this.urlUsuario);
   }
 
@@ -40,5 +43,10 @@ export class UsuarioService {
   updateUsuario(id: number, usuario: Usuario): Observable<Usuario> {
     this.urlUsuario = AppConstants.BASE_URL_REST + AppConstants.USUARIO;
     return this.http.put<Usuario>(this.urlUsuario + '/' + id, usuario, httpOptions);
+  }
+
+  loginUsuario(usuario: Usuario): Observable<Usuario> {
+    this.urlUsuario = AppConstants.BASE_URL_REST + AppConstants.USUARIO;
+    return this.http.put<Usuario>(this.urlUsuario + '/login', usuario, httpOptions);
   }
 }

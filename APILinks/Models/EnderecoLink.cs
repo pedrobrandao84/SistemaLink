@@ -24,6 +24,8 @@ namespace APILinks.Models
 
         public DateTime DTCriacao { get; set; }
 
+        public Usuario Usuario { get; set; }
+
         public ICollection<Grupo> Grupos { get; set; }
     }
 }

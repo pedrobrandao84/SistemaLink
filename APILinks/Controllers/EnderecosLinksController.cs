@@ -22,9 +22,11 @@ namespace APILinks.Controllers
 
         // GET: api/EnderecosLinks
         [HttpGet]
-        public IEnumerable<EnderecoLink> GetEnderecosLinks()
+        public IEnumerable<EnderecoLink> GetEnderecosLinksPorUsuario(int? idUsuario)
         {
-            return _context.EnderecosLinks;
+            var links = _context.EnderecosLinks.Where(w => w.Usuario.IdUsuario == idUsuario || idUsuario == null).ToList();
+
+            return links;
         }
 
         // GET: api/EnderecosLinks/5
@@ -51,6 +53,9 @@ namespace APILinks.Controllers
             {
                 return BadRequest();
             }
+
+            var usuario = _context.Usuarios.FirstOrDefault(c => c.IdUsuario == enderecoLink.Usuario.IdUsuario);
+            enderecoLink.Usuario = usuario;
 
             _context.Entry(enderecoLink).State = EntityState.Modified;
 
@@ -79,6 +84,9 @@ namespace APILinks.Controllers
         [HttpPost]
         public async Task<ActionResult<EnderecoLink>> PostEnderecoLink([FromBody] EnderecoLink enderecoLink)
         {
+            var usuario = _context.Usuarios.FirstOrDefault(c => c.IdUsuario == enderecoLink.Usuario.IdUsuario);
+            enderecoLink.Usuario = usuario;
+
             enderecoLink.DTCriacao = DateTime.Now;
             _context.EnderecosLinks.Add(enderecoLink);
             await _context.SaveChangesAsync();
@@ -90,6 +98,14 @@ namespace APILinks.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<EnderecoLink>> DeleteEnderecoLink(int id)
         {
+            var grupos = await _context.Grupos.Where(w => w.EnderecoLink.IdEnderecoLink == id).ToListAsync();
+
+            foreach (var item in grupos)
+            {
+                var grupo = await _context.Grupos.FindAsync(item.IdGrupo);
+                _context.Grupos.Remove(grupo);
+            }
+
             var enderecoLink = await _context.EnderecosLinks.FindAsync(id);
             if (enderecoLink == null)
             {

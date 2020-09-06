@@ -22,9 +22,12 @@ namespace APILinks.Controllers
 
         // GET: api/Usuarios
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios(string nome, bool? ativo)
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios(string nome, bool? ativo, string cpf)
         {
-            var usuario = await _context.Usuarios.Where(w => (w.Nome.Contains(nome) || string.IsNullOrEmpty(nome)) && (w.STAtivo == ativo || ativo == null)).ToListAsync();
+            var usuario = await _context.Usuarios.Where(w => 
+                                (w.Nome.Contains(nome) || string.IsNullOrEmpty(nome)) && 
+                                (w.STAtivo == ativo || ativo == null) &&
+                                (w.CPF == cpf || string.IsNullOrEmpty(cpf))).ToListAsync();
             return usuario;
         }
 

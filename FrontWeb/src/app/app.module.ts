@@ -22,6 +22,13 @@ import { UrlLinkComponent } from './url-link/url-link.component';
 import { ToastModule } from 'primeng/toast';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './login/service/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { LinkGuard } from './guards/link.guard';
+import {ConfirmationService} from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -29,6 +36,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     LinkComponent,
     UrlLinkComponent,
     UsuarioComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +54,8 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     DialogModule,
     OverlayPanelModule,
     ToastModule,
+    MessagesModule,
+    ConfirmDialogModule,
     NgxMaskModule.forRoot()
   ],
   exports: [
@@ -60,6 +70,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
   providers: [
     MessageService,
     MensagemService,
+    AuthService,
+    AuthGuard,
+    LinkGuard,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })
