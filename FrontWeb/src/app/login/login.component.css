@@ -16,3 +16,23 @@
      height: 400px;
      background: rgb(255, 255, 255);
  }
+
+.buttons {
+    margin-top: 10px; 
+}
+
+.btn_buscar {  
+    margin: 0px 5px 0px 15px;
+}
+
+.btn_inserir {  
+    color: #fff;
+    background-color: darkorange;
+    border-color: darkorange;
+}
+
+.btn-default {
+    color: #fff;
+    background-color: darkolivegreen;
+    border-color: darkolivegreen;
+}

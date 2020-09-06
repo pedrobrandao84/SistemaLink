@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { MensagemService } from '../app-util/mensagem-service';
 import { Grupo } from './Model/grupo';
 import { GrupoService } from './services/grupo.service';
+import { Usuario } from '../usuario/Model/usuario';
+import { AuthService } from '../login/service/auth.service';
+import { ConfirmationService, Message } from 'primeng/api';
 
 @Component({
   selector: 'app-link',
@@ -23,31 +26,50 @@ export class LinkComponent implements OnInit {
   formAlterandoGrupo: Grupo = new Grupo();
   mostrarModal: boolean = false;
   mostrarModalGrupo: boolean = false;
+  private usuarioLogado: Usuario;
+  msgs: Message[] = [];
+  position: string;
 
   constructor(
     private linkService: LinkService, 
     private grupoService: GrupoService,
     private router: Router,
-    private mensagem: MensagemService) { }
+    private mensagem: MensagemService,
+    private authService: AuthService,
+    private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.usuarioLogado = this.authService.retornaUsuarioLogado();
     this.reloadLinks();
   }
 
   reloadLinks(){
-    this.linkService.getLinksList().subscribe((link: Link[]) => {
-      this.links = link;
+    this.linkService.getLinksListPorUsuario(this.usuarioLogado).subscribe((link: Link[]) => {
+      this.links = link;      
     });
   }
 
-  deleteLinks(id: number){
-    this.linkService.deleteLink(id).subscribe(
-      data => {
-        console.log(data);
-        this.reloadLinks();
+  openDelete(id: number) {
+    this.confirmationService.confirm({
+      message: 'Deseja realmente deletar o Link e todos os seus grupos?',
+      header: 'Deleta Link',
+      icon: 'pi pi-info-circle',
+      acceptLabel: 'Sim',
+      rejectLabel: 'Não',
+      accept: () => {
+        this.linkService.deleteLink(id).subscribe(
+          data => {
+            console.log(data);
+            this.reloadLinks();
+          },
+          error => console.log(error)
+        );
+        this.mensagem.sucesso("Link", "Link e Grupos excluídos com sucesso.");
       },
-      error => console.log(error)
-    );
+      reject: () => {
+        this.mensagem.sucesso("Link", "Link e Grupos não excluído.");
+      }
+    });
   }
 
   detalhaLinks(id: number) {
@@ -74,6 +96,7 @@ export class LinkComponent implements OnInit {
 
   gravarLink() {
     if(this.verificarFormularioLink()) {
+      this.formAlterandoLink.usuario = this.usuarioLogado;
       if (this.formAlterandoLink.idEnderecoLink == undefined) {
         this.linkService.createLink(this.formAlterandoLink).subscribe(() => {
           this.mensagem.sucesso("Link", "Link Inserido com sucesso.");

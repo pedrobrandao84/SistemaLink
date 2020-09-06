@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConstants } from '../app-constants/app.constants';
 import { Link } from '../Model/link';
+import { Usuario } from 'src/app/usuario/Model/usuario';
 
 var httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'})};
 
@@ -17,6 +18,10 @@ export class LinkService {
 
   getLinksList() {
     return this.http.get(`${this.urlLink}`);
+  }
+
+  getLinksListPorUsuario(usuario: Usuario) {
+    return this.http.get(this.urlLink + "?idUsuario=" + usuario.idUsuario);
   }
 
   getLink(id: number): Observable<Link> {

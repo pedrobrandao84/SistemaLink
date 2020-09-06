@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 })
 export class AuthService {
   private usuarioAutenticado: boolean;
+  private usuarioLogado: Usuario;
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
@@ -19,10 +20,10 @@ export class AuthService {
     this.usuarioService.loginUsuario(usuario).subscribe(user => {
       if (user) {
         this.usuarioAutenticado = true;
-
+        this.usuarioLogado = user;
         this.mostrarMenuEmitter.emit(true);
   
-        this.router.navigate(['/']);
+        this.router.navigate(['link']);
       } else {
         this.usuarioAutenticado = false;
 
@@ -33,5 +34,9 @@ export class AuthService {
 
   usuarioEstaAutenticado(){
     return this.usuarioAutenticado;
+  }
+
+  retornaUsuarioLogado(){
+    return this.usuarioLogado;
   }
 }

@@ -24,6 +24,9 @@ export class UsuarioService {
     if(usuario.filtroAtivo != undefined && usuario.filtroAtivo != "Todos"){
       this.urlUsuario = this.urlUsuario + "&ativo=" + usuario.filtroAtivo;
     }
+    if(usuario.cpf != undefined){
+      this.urlUsuario = this.urlUsuario + "&cpf=" + usuario.cpf;
+    }
     return this.http.get(this.urlUsuario);
   }
 

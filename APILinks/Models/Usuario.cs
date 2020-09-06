@@ -31,5 +31,7 @@ namespace APILinks.Models
 
         public DateTime DataUtimoAcesso { get; set; }
 
+        public ICollection<EnderecoLink> EnderecoLinks { get; set; }
+
     }
 }

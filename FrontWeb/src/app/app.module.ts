@@ -26,6 +26,9 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/service/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LinkGuard } from './guards/link.guard';
+import {ConfirmationService} from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import { LinkGuard } from './guards/link.guard';
     DialogModule,
     OverlayPanelModule,
     ToastModule,
+    MessagesModule,
+    ConfirmDialogModule,
     NgxMaskModule.forRoot()
   ],
   exports: [
@@ -67,7 +72,8 @@ import { LinkGuard } from './guards/link.guard';
     MensagemService,
     AuthService,
     AuthGuard,
-    LinkGuard
+    LinkGuard,
+    ConfirmationService
   ],
   bootstrap: [AppComponent]
 })

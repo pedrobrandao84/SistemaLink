@@ -30,12 +30,14 @@
             <td>
                 <button (click)="detalhaLinks(link.idEnderecoLink)" class="btn btn-info" title="Consulta Grupos" style="margin-left: 10px"><i class="pi pi-search"></i></button>
                 <button (click)="editaLinks(link.idEnderecoLink)" class="btn btn-default" title="Edita Link" style="margin-left: 10px;"><i class="pi pi-pencil"></i></button>
-                <button (click)="deleteLinks(link.idEnderecoLink)" class="btn btn-danger" title="Deleta Link" style="margin-left: 10px"><i class="pi pi-times"></i></button>
+                <button (click)="openDelete(link.idEnderecoLink)" class="btn btn-danger" title="Deleta Link" style="margin-left: 10px"><i class="pi pi-times"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
     <p-dialog header="Link" [(visible)]="mostrarModal" [modal]="true" [contentStyle]="{width: '500px'}">
       <div class="ui-g">
