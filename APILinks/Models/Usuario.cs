@@ -22,6 +22,9 @@ namespace APILinks.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DataType(DataType.PhoneNumber)]
+        public string Celular { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         public string Senha { get; set; }
@@ -31,7 +34,17 @@ namespace APILinks.Models
 
         public DateTime DataUtimoAcesso { get; set; }
 
+        public DateTime DataCadastro { get; set; }
+
         public ICollection<EnderecoLink> EnderecoLinks { get; set; }
+
+        public DateTime DTUltimoPagamento { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string PlanoVigente { get; set; }
+
+        public ICollection<Pagamento> Pagamento { get; set; }
 
     }
 }
